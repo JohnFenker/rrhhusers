@@ -31,7 +31,9 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
 )
-LOCAL_APPS = ()
+LOCAL_APPS = (
+    'applications.users',
+)
 THIRD_PARTY_APPS = ()
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
@@ -82,7 +84,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+#User Model make for developer for Django System.
+AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
