@@ -30,3 +30,6 @@ class UserRegisterForm(forms.ModelForm):
             'email',
             'genero',
         )
+    def clean_password2(self):
+        if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+            self.add_error('password2', 'Las contraseñas no son iguales')
