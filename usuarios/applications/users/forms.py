@@ -1,6 +1,6 @@
 from django import forms
 from .models import User
-
+from django.contrib.auth import authenticate
 class UserRegisterForm(forms.ModelForm):
     
     password1 = forms.CharField(
@@ -56,3 +56,15 @@ class LoginForm(forms.Form):
                 'placeholder': 'Contraseña'
             }
     ))
+    #metodos para validar el pass
+    def clean(self):
+        #el diccionario del padre.
+        cleaned_data = super(LoginForm, self).clean()
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        # si no es valido-> tira error
+        if not authenticate(username= username, password = password):
+            raise forms.ValidationError('Los datos no son correctos')
+        #si es valido, devuelve el diccionario.
+        return self.cleaned_data
+        
