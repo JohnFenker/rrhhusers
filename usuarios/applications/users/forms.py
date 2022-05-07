@@ -67,4 +67,25 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Los datos no son correctos')
         #si es valido, devuelve el diccionario.
         return self.cleaned_data
-        
+class UpdatePasswordForm(forms.Form):
+    password1 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        #para personalizar 
+        widget=forms.PasswordInput(
+            attrs= {
+                'placeholder': 'Contraseña Actual'
+            }
+    ))
+    password2 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        #para personalizar 
+        widget=forms.PasswordInput(
+            attrs= {
+                'placeholder': 'Contraseña Nueva'
+            }
+    ))
+class VerificationForm(forms.Form):
+    codregistro = forms.CharField(required=True)
+    
